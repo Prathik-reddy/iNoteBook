@@ -18,9 +18,11 @@ router.post("/createUser", [
         min: 5
     }),
 ], async (req, res) => {
+    let success = false;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({
+            success,
             errors: errors.array()
         });
     }
@@ -31,6 +33,7 @@ router.post("/createUser", [
         });
         if (user) {
             return res.status(400).json({
+                success,
                 err: "user with this email already exists"
             })
         }
@@ -48,8 +51,8 @@ router.post("/createUser", [
         }
         const authToken = jwt.sign(data, JWT_SECRET);
         console.log(authToken);
-
-        res.json(authToken);
+        success=true;
+        res.json({success,authToken});
 
     } catch (error) {
         console.error(error.mesage);
