@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 
-const Login = () => {
+const Login = (props) => {
     const [credentials, setCredentials] = useState({email:"", password:""})
     let history = useHistory();
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch('http://localhost:5000/api/auth/login', {
@@ -21,10 +21,11 @@ const Login = () => {
                 // save the auth token and redirect
                 localStorage.setItem('token',json.authtoken);
                 history.push("/")
+                props.showAlert("Login success!","success");
 
           }
           else{
-              alert('Failed to login');
+            props.showAlert("invalid details","danger");
           }
 
     }
