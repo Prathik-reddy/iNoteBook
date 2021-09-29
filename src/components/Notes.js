@@ -10,9 +10,8 @@ const Notes = (props) => {
     const { notes, getNotes,editNote } = context;
     const [note, setNote] = useState({id:"", etitle: "", edescription: "", etag: "" })
     useEffect(() => {
-        if (!localStorage.getItem("token")) {
+        if (localStorage.getItem("token")) {
             getNotes()
-
         }else{
             history.push("/login")
         }
