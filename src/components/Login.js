@@ -16,8 +16,6 @@ const Login = (props) => {
             body: JSON.stringify({email:credentials.email,password:credentials.password})
           });
           const json = await response.json();
-          console.log("auth token is : ", json.authToken);
-          console.log("json is : ",json);
           if(json.success) {
                 // save the auth token and redirect
                 localStorage.setItem('token',json.authToken);
@@ -35,7 +33,8 @@ const Login = (props) => {
     }
 
     return (
-        <div>
+        <div className= "mt-3">
+            <h2>Login To Continue To Use iNotebook</h2>
             <form  onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>

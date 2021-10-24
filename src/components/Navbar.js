@@ -29,7 +29,7 @@ export const Navbar = () => {
                         {!localStorage.getItem("token") ? <form className="d-flex">
                             <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
                             <Link className="btn btn-primary mx-1" to="/signup" role="button">SignUp</Link>
-                        </form>: <button className="btn btn-primary mx-1" onClick={handleLogout} role="button">Logout</button>}
+                        </form>: <button className="btn btn-primary mx-1" onClick={handleLogout} >Logout</button>}
                     </div>
                 </div>
             </nav>
